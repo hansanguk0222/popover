@@ -51,7 +51,6 @@ const Anchor = styled.button`
           left: -5px;
         `;
       } else if (props.left === 1) {
-        console.log("여기");
         return css`
           left: 90px;
         `;
@@ -208,7 +207,7 @@ const Main = () => {
 
   const toggleAnchor = () => {
     setVisible((state) => !state);
-    console.log(visible);
+
     let anchorVertical;
     let anchorHorizontal;
     let transformVertical;
@@ -216,9 +215,9 @@ const Main = () => {
 
     if (anchorOriginVertical === 0) {
       anchorVertical = "top";
-    } else if (anchorVertical === 1) {
+    } else if (anchorOriginVertical === 1) {
       anchorVertical = "center";
-    } else if (anchorVertical === 2) {
+    } else if (anchorOriginVertical === 2) {
       anchorVertical = "bottom";
     }
 

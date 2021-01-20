@@ -26,7 +26,6 @@ const Container = styled.div`
   border-radius: 3px;
   width: 100px;
   height: 50px;
-  border: 3px dashed #ccc;
 `;
 
 const Popover = ({
@@ -43,20 +42,19 @@ const Popover = ({
   useOnClickOutside(PopoverRef, () => setVisible(false));
 
   //2. 어디로부터 나올지 결정
-  const parentBox = anchorEl.getBoundingClientRect(); //이게 뭐지?
-  console.log(anchorEl);
-  console.log(parentBox);
+  const parentBox = anchorEl.getBoundingClientRect();
 
   let top = 0;
   let left = 0;
 
   const { anchorVertical, anchorHorizontal } = anchorOrigin;
 
-  console.log(anchorVertical, anchorHorizontal);
+  console.log(anchorOrigin);
   if (anchorVertical === "top") {
     top = parentBox.top;
   } else if (anchorVertical === "center") {
-    top = parentBox.top + parentBox.height / 2;
+    top = (parentBox.top + parentBox.bottom) / 2;
+    console.log(top);
   } else if (anchorVertical === "bottom") {
     top = parentBox.bottom;
   }
@@ -64,7 +62,7 @@ const Popover = ({
   if (anchorHorizontal === "left") {
     left = parentBox.left;
   } else if (anchorHorizontal === "center") {
-    left = parentBox.left + parentBox.width / 2;
+    left = (parentBox.left + parentBox.right) / 2;
   } else if (anchorHorizontal === "right") {
     left = parentBox.right;
   }
@@ -94,7 +92,7 @@ const Popover = ({
     x = -100;
   }
 
-  console.log(top, left);
+  console.log(top, left, x, y);
 
   return (
     { visible } && (
